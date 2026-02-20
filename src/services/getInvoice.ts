@@ -10,8 +10,7 @@ export const getInvoice = (): Invoice => {
     //     total = total + (item.price * item.quantity);
     // });
 
-    //const total = calculateTotal(invoice.items)
-    const total = calculateInvoiceTotal(invoice?.items);
+    const total = calculateTotal(invoice?.items);
 
     return {
         ...invoice,
@@ -20,20 +19,20 @@ export const getInvoice = (): Invoice => {
 
 }
 
-// versión simple sin validaciones ni manejo de posibles datos mal formados
+// Aseguramos que operamos con números por si acaso los datos vienen como strings
 export const calculateTotal = (items: Item[] = []): number => {
+    return items.reduce((accumulator, item) => accumulator + (Number(item.price) * Number(item.quantity)), 0);
+}
+
+// versión simple sin validaciones ni manejo de posibles datos mal formados
+export const calculateTotalV1 = (items: Item[] = []): number => {
     return items
         .map(item => item.price * item.quantity)
         .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 }
 
-// Aseguramos que operamos con números por si acaso los datos vienen como strings
-export const calculateInvoiceTotal = (items: Item[] = []): number => {
-    return items.reduce((accumulator, item) => accumulator + (Number(item.price) * Number(item.quantity)), 0);
-}
-
 // Versión más detallada con comentarios explicativos
-export const calculateInvoiceTotalV2 = (items: Item[] = []): number => {
+export const calculateTotalV2 = (items: Item[] = []): number => {
     return items.reduce((accumulator, item) => {
         // Aseguramos que operamos con números por si acaso
         return accumulator + (Number(item.price) * Number(item.quantity));
@@ -41,6 +40,6 @@ export const calculateInvoiceTotalV2 = (items: Item[] = []): number => {
 }
 
 // Versión más concisa utilizando el operador de coalescencia nula para manejar posibles valores undefined
-export const calculateInvoiceTotalV3 = (items: Item[] = []): number => {
+export const calculateTotalV3 = (items: Item[] = []): number => {
     return items.reduce((accumulator, item) => accumulator + (item.price * item.quantity), 0);
 };
