@@ -4,9 +4,10 @@ import { RowItem } from "./RowItem";
 interface Props {
     items: Item[];
     title: string;
+    handlerDeleteItemList: (id: number) => void;
 }
 
-export const ListItemsView = ({ title, items }: Props) => {
+export const ListItemsView = ({ title, items, handlerDeleteItemList }: Props) => {
 
     return (
         <>
@@ -17,11 +18,19 @@ export const ListItemsView = ({ title, items }: Props) => {
                         <th>Producto</th>
                         <th>Cantidad</th>
                         <th>Precio</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {items.map(({ id, product, quantity, price }) => (
-                        <RowItem key={id} product={product} quantity={quantity} price={price} />
+                        <RowItem
+                            key={id}
+                            id={id}
+                            product={product}
+                            quantity={quantity}
+                            price={price}
+                            handlerDeleteItemChild={handlerDeleteItemList}
+                        />
                     ))}
                 </tbody>
             </table>
