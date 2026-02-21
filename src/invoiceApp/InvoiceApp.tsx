@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
-
-import type { Invoice, Item } from "./interfaces/Invoice.interface";
+import { useState, useEffect } from "react";
 import { ClientView } from "./components/ClientView";
 import { CompanyView } from "./components/CompanyView";
+import { FormItemsView } from "./components/FormItemsView";
 import { InvoiceView } from "./components/InvoiceView";
 import { ListItemsView } from "./components/ListItemsView";
 import { TotalView } from "./components/TotalView";
+import type { Invoice, Item } from "./interfaces/Invoice.interface";
 import { getInvoice, calculateTotal } from "./services/getInvoice";
-import { FormItemsView } from "./components/FormItemsView";
 
 const invoiceInitial: Invoice = {
     id: 0,
@@ -92,7 +91,8 @@ export const InvoiceApp = () => {
                             </div>
                         </div>
                         <ListItemsView items={items} title="Lista de Items"
-                            handlerDeleteItemList={(id: number) => handlerDeleteItem(id)}
+                            handlerDeleteItemList={handlerDeleteItem}
+                        //handlerDeleteItemList={(id: number) => handlerDeleteItem(id)}
                         />
 
                         <TotalView total={total} />

@@ -6,7 +6,7 @@ interface Props {
     handlerDeleteItemChild: (id: number) => void;
 }
 
-export const RowItem = ({ id, product, quantity, price, handlerDeleteItemChild }: Props) => {
+export const RowItemView = ({ id, product, quantity, price, handlerDeleteItemChild }: Props) => {
     return (
         <>
             <tr>

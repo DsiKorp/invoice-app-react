@@ -1,5 +1,5 @@
 import type { Item } from "../interfaces/Invoice.interface";
-import { RowItem } from "./RowItem";
+import { RowItemView } from "./RowItemView";
 
 interface Props {
     items: Item[];
@@ -23,7 +23,7 @@ export const ListItemsView = ({ title, items, handlerDeleteItemList }: Props) =>
                 </thead>
                 <tbody>
                     {items.map(({ id, product, quantity, price }) => (
-                        <RowItem
+                        <RowItemView
                             key={id}
                             id={id}
                             product={product}

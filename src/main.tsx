@@ -1,10 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { Principal } from './Principal'
 //import './index.css'
-import { InvoiceApp } from './InvoiceApp'
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <InvoiceApp />
+    <Principal />
   </StrictMode>,
 )
