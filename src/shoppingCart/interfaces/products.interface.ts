@@ -1,4 +1,4 @@
-export interface ElementReducer {
+export interface DispatchAction {
     type: string;
     payload: ItemCard | number;
 }

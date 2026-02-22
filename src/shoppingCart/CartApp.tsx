@@ -1,31 +1,12 @@
-import { useReducer, useState } from "react";
 import { CartView } from "./components/CartView";
 import { CatalogView } from "./components/CatalogView";
 import { Navbar } from "./components/Navbar";
-import type { Product, ItemCard, } from "./interfaces/products.interface";
-import { itemsReducer } from "./reducer/itemsReducer";
+import { useItemsCart } from "./hooks/useItemsCart";
 
-const initialCartItems: ItemCard[] = JSON.parse(sessionStorage.getItem('cartItems') || '[]');
+//const initialCartItems: ItemCard[] = JSON.parse(sessionStorage.getItem('cartItems') || '[]');
 
 export const CartApp = () => {
-
-    //const [cartItems, setCartItems] = useState<ItemCard[]>(initialCartItems);
-    const [cartItems, dispatch] = useReducer(itemsReducer, initialCartItems);
-    console.log({ cartItems })
-
-    const handleAddProductCart = (product: Product) => {
-        const itemInCart = cartItems.find(item => item.product.id === product.id);
-
-        if (itemInCart) {
-            dispatch({ type: 'UpdateQuantityProductCart', payload: product });
-        } else {
-            dispatch({ type: 'AddProductCart', payload: product });
-        }
-    };
-
-    const handleDelProductCart = (id: number) => {
-        dispatch({ type: 'DeleteProductCart', payload: id });
-    }
+    const { cartItems, handleAddProductCart, handleDelProductCart } = useItemsCart();
 
     return (
         <>

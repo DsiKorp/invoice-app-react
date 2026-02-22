@@ -1,4 +1,4 @@
 
-export const AddProductCart = 'AddProductCart';
-export const UpdateQuantityProductCart = 'UpdateQuantityProductCart';
-export const DeleteProductCart = 'DeleteProductCart';
+export const ADD_PRODUCT_CART = 'ADD_PRODUCT_CART';
+export const DELETE_PRODUCT_CART = 'DELETE_PRODUCT_CART';
+export const UPDATE_QUANTITY_PRODUCT_CART = 'UPDATE_QUANTITY_PRODUCT_CART';
