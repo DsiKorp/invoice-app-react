@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from "react";
 import { itemsReducer } from "../reducer/itemsReducer";
-import { AddProductCart, DeleteProductCart, UpdateQuantityProductCart } from "../reducer/itemsActions";
+import { ADD_PRODUCT_CART, DeleteProductCart, UPDATE_QUANTITY_PRODUCT_CART } from "../reducer/itemsActions";
 
 const inititalCartItems = JSON.parse(sessionStorage.getItem('cart')) || [];
 
@@ -18,13 +18,13 @@ export const useItemsCart = () => {
         if (hasItem) {
             dispatch(
                 {
-                    type: UpdateQuantityProductCart,
+                    type: UPDATE_QUANTITY_PRODUCT_CART,
                     payload: product,
                 }
             );
         } else {
             dispatch({
-                type: AddProductCart,
+                type: ADD_PRODUCT_CART,
                 payload: product,
             });
         }

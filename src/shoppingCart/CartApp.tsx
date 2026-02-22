@@ -1,32 +1,30 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { CartView } from "./components/CartView";
 import { CatalogView } from "./components/CatalogView";
 import { Navbar } from "./components/Navbar";
 import type { Product, ItemCard, } from "./interfaces/products.interface";
+import { itemsReducer } from "./reducer/itemsReducer";
 
-const initialCartItems = JSON.parse(sessionStorage.getItem('cartItems') || '[]');
+const initialCartItems: ItemCard[] = JSON.parse(sessionStorage.getItem('cartItems') || '[]');
 
 export const CartApp = () => {
 
-    const [cartItems, setCartItems] = useState<ItemCard[]>(initialCartItems);
+    //const [cartItems, setCartItems] = useState<ItemCard[]>(initialCartItems);
+    const [cartItems, dispatch] = useReducer(itemsReducer, initialCartItems);
     console.log({ cartItems })
 
     const handleAddProductCart = (product: Product) => {
         const itemInCart = cartItems.find(item => item.product.id === product.id);
 
         if (itemInCart) {
-            setCartItems(cartItems.map(item => (
-                item.product.id === product.id
-                    ? { ...item, quantity: item.quantity + 1, total: item.total + product.price * 1 }
-                    : { ...item }
-            )));
+            dispatch({ type: 'UpdateQuantityProductCart', payload: product });
         } else {
-            setCartItems([...cartItems, { product, quantity: 1, total: product.price * 1 }]);
+            dispatch({ type: 'AddProductCart', payload: product });
         }
     };
 
     const handleDelProductCart = (id: number) => {
-        setCartItems(cartItems.filter(item => item.product.id !== id));
+        dispatch({ type: 'DeleteProductCart', payload: id });
     }
 
     return (
