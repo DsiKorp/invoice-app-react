@@ -1,73 +1,123 @@
-# React + TypeScript + Vite
+# React Invoice & Shopping Cart App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web application built with **React + TypeScript + Vite** that includes two main modules:
+- 📄 **Invoice App** – Create and manage invoices with client/company info and item lists.
+- 🛒 **Shopping Cart** – A fully functional shopping cart with state management via reducers.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
 
-## React Compiler
+- [React 18](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [ESLint](https://eslint.org/)
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+---
 
-## Expanding the ESLint configuration
+## 📁 Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── main.tsx                  # App entry point
+├── Principal.tsx             # Main layout / navigation
+├── index.css                 # Global styles
+├── routes/
+│   └── CartRoutes.tsx        # Routing configuration
+├── invoiceApp/
+│   ├── InvoiceApp.tsx        # Invoice module root
+│   ├── components/
+│   │   ├── ClientView.tsx    # Client information form
+│   │   ├── CompanyView.tsx   # Company information form
+│   │   ├── FormItemsView.tsx # Form to add invoice items
+│   │   ├── InvoiceView.tsx   # Full invoice preview
+│   │   └── ListItemsView.tsx # List of added items
+│   ├── data/                 # Static/mock data
+│   ├── interfaces/           # TypeScript interfaces
+│   └── services/             # Business logic / services
+└── shoppingCart/
+    ├── CartApp.tsx           # Shopping cart module root
+    ├── components/           # UI components
+    ├── data/                 # Static/mock data
+    ├── hooks/                # Custom React hooks
+    ├── interfaces/           # TypeScript interfaces
+    ├── reducer/              # useReducer logic
+    └── services/             # Business logic / services
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ⚙️ Prerequisites
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- [Node.js](https://nodejs.org/) >= 18.x
+- [npm](https://www.npmjs.com/) >= 9.x
+
+---
+
+## 📦 Installation
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/DsiKorp/invoice-app-react.git
+cd your-repo
+npm install
 ```
+
+---
+
+## 🧪 Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start development server at `http://localhost:5173` |
+| `npm run build` | Build the app for production |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint to check for code issues |
+
+---
+
+## 🖥️ Running the App
+
+```bash
+# Development mode
+npm run dev
+
+# Production build
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+---
+
+## 🧩 Modules
+
+### 📄 Invoice App
+Allows users to:
+- Enter **company** and **client** information.
+- Add **items** with quantity and price.
+- Preview a complete **invoice** with totals.
+
+### 🛒 Shopping Cart
+Allows users to:
+- Browse a **product list**.
+- **Add/remove** products from the cart.
+- Manage cart state using **React Reducer** pattern.
+
+---
+
+## 🤝 Contributing
+
+1. Fork the project
+2. Create your feature branch: `git checkout -b feature/my-feature`
+3. Commit your changes: `git commit -m 'Add my feature'`
+4. Push to the branch: `git push origin feature/my-feature`
+5. Open a Pull Request
+
+---
+
+## 📝 License
+
+This project is licensed under the [MIT License](LICENSE).
