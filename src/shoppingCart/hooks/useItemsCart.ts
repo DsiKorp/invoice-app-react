@@ -7,7 +7,6 @@ const initialCartItems: ItemCard[] = JSON.parse(sessionStorage.getItem('cartItem
 
 export const useItemsCart = () => {
 
-    // //const [cartItems, setCartItems] = useState<ItemCard[]>(initialCartItems);
     const [cartItems, dispatch] = useReducer(itemsReducer, initialCartItems);
     console.log({ cartItems });
 

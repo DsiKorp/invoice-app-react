@@ -1,4 +1,5 @@
 import type { Product } from "../interfaces/products.interface"
+import { useNavigate } from "react-router-dom";
 
 interface Props {
     product: Product;
@@ -6,9 +7,12 @@ interface Props {
 }
 
 export const ProductCardView = ({ product: { id, name, description, price }, handlerAddProductView }: Props) => {
+    const navigate = useNavigate();
+
     const onAddProduct = (product: Product) => {
         console.log({ product });
         handlerAddProductView(product);
+        navigate("/cart");
     }
 
     return (

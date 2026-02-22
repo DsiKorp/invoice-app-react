@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { ItemCard } from "../interfaces/products.interface";
 import { calculateTotalV2 } from "../services/productService";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
     items: ItemCard[];
@@ -10,10 +11,15 @@ interface Props {
 export const CartView = ({ items, handleDeleteProduct: handleDelProduct }: Props) => {
 
     const [total, setTotal] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         setTotal(calculateTotalV2(items));
     }, [items]);
+
+    const onCatalog = () => {
+        navigate("/catalog");
+    }
 
 
     return (
@@ -60,6 +66,12 @@ export const CartView = ({ items, handleDeleteProduct: handleDelProduct }: Props
                     </tr>
                 </tfoot>
             </table>
+            <button
+                className="btn btn-success"
+                onClick={onCatalog}
+            >
+                Seguir comprando
+            </button>
         </>
     )
 }
