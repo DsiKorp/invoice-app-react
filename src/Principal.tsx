@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { InvoiceApp } from "./invoiceApp/InvoiceApp";
 import { CartApp } from "./shoppingCart/CartApp";
+import { BrowserRouter } from "react-router-dom";
 
 type AppModule = "invoice" | "cart";
 
@@ -38,7 +39,7 @@ export const Principal = () => {
                     </div>
 
                     <div className="card-body p-4">
-                        {activeModule === "invoice" ? <InvoiceApp /> : <CartApp />}
+                        {activeModule === "invoice" ? <InvoiceApp /> : <BrowserRouter><CartApp /></BrowserRouter>}
                     </div>
                 </div>
             </div>
